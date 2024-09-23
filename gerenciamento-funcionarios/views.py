@@ -28,20 +28,30 @@ def dados_funcionario():
 
     return nome, cpf, ano_nasc, id_func, cargo, salario_base
 
-def id_func_excluir():
-    id_func = input('Digite o id do funcionário que deseja excluir: ')
-    print('-' * 50)
-    return id_func
+def id_func_excluir(funcionarios):
+    if not funcionarios:
+        print('Ainda não há funcionários cadastrados')
+        print('-' * 50)
+        return None
+    else:
+        id_func = input('Digite o id do funcionário que deseja excluir: ')
+        print('-' * 50)
+        return id_func
 
 def exibir_salario_funcionario():
     id_funcionario = input('Digite o id do funcionário que deseja verificar o salário: ')
     print('-' * 50)
     return id_funcionario
 
-def id_editar_funcionario():
-    id_funcionario = input('Digite o id do funcionário que deseja editar: ')
-    print('-' * 50)
-    return id_funcionario
+def id_editar_funcionario(funcionarios):
+    if not funcionarios:
+        print('Ainda não há funcionários cadastrados')
+        print('-' * 50)
+        return None
+    else:
+        id_funcionario = input('Digite o id do funcionário que deseja editar: ')
+        print('-' * 50)
+        return id_funcionario
 
 def dados_editar_funcionario(funcionario):
     novo_nome = prompt('Digite o nome: ', default=funcionario.nome)

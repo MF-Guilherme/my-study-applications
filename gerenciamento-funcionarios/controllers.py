@@ -21,14 +21,18 @@ class FuncionarioController():
     
     def excluir_funcionario(self, id_func):
         id_encontrado = False
-        for func in self.db:
-            if func.id_func == id_func:
-                self.db.remove(func)
-                id_encontrado = True
-                print('Funcionário excluído com sucesso!')
+        if self.db:
+            for func in self.db:
+                if func.id_func == id_func:
+                    self.db.remove(func)
+                    id_encontrado = True
+                    print('Funcionário excluído com sucesso!')
+                    print('-' * 50)
+            if not id_encontrado:
+                print('Id de funcionário não encontrado')
                 print('-' * 50)
-        if not id_encontrado:
-            print('Id de funcionário não encontrado')
+        else: 
+            print('Ainda não há nenhum funcionário cadastrado')
             print('-' * 50)
 
     def exibir_salario_funcionario(self, id_func):
