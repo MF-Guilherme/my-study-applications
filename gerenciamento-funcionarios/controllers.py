@@ -44,4 +44,22 @@ class FuncionarioController():
             print('Código funcional não encontrado')
             print('-' * 50)
 
+
+    def retornar_funcionario(self, id_func):
+        for funcionario in self.db:
+            if funcionario.id_func == id_func:
+                return funcionario
         
+    def editar_funcionario(self, novo_nome, novo_cpf, novo_ano_nasc, id_func, novo_cargo, novo_salario_base):
+        for funcionario in self.db:
+            if funcionario.id_func == id_func:
+                funcionario.nome = novo_nome
+                funcionario.cpf = novo_cpf
+                funcionario.ano_nasc = novo_ano_nasc
+                funcionario.cargo = novo_cargo
+                funcionario.salario_base = novo_salario_base
+                return 'Dados alterados com sucesso'                
+            else:
+                return 'Funcionário não encontrado'
+        print('-' * 50)
+ 

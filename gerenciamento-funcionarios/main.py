@@ -13,9 +13,19 @@ def excluir_funcionario():
     id_funcionario = views.id_func_excluir()
     func_controller.excluir_funcionario(id_funcionario)
 
+def editar_funcionario():
+    id_funcionario = views.id_editar_funcionario()
+    funcionario = func_controller.retornar_funcionario(id_funcionario)
+    nome, cpf, ano_nasc, id_func, cargo, salario_base = views.dados_editar_funcionario(funcionario)
+    print(func_controller.editar_funcionario(nome, cpf, ano_nasc, id_func, cargo, salario_base))
+    print('-' * 50)
+
 def exibir_salario():
     id_funcionario = views.exibir_salario_funcionario()
     func_controller.exibir_salario_funcionario(id_funcionario)
+
+def editar_salario():
+    views.editar_funcionario()
 
 func_controller = FuncionarioController()
 
@@ -37,7 +47,7 @@ while True:
         excluir_funcionario()
         exibir_funcionarios()
     elif menu == '4':
+        editar_funcionario()
+    elif menu == '5':
         exibir_salario()
-    
-    
     

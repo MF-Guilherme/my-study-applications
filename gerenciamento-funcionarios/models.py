@@ -8,7 +8,7 @@ class Pessoa:
     
     @property
     def idade(self):
-        return datetime.now(timezone.utc).year - self.ano_nasc
+        return datetime.now(timezone.utc).year - int(self.ano_nasc)
 
 
 class Funcionario(Pessoa):
@@ -19,7 +19,7 @@ class Funcionario(Pessoa):
         self.cargo = cargo
 
     def salario_liquido(self):
-        return self.salario_base * 0.90
+        return float(self.salario_base) * 0.90
 
 
 class Gerente(Funcionario):
@@ -27,4 +27,4 @@ class Gerente(Funcionario):
         super().__init__(nome, cpf, ano_nasc, id_func, cargo, salario_base)
     
     def salario_liquido(self):
-        return self.salario_base * 0.95
+        return float(self.salario_base) * 0.95
