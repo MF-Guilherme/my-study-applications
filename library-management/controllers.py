@@ -1,6 +1,3 @@
-from models import Book, User
-
-
 class BookController():
     def __init__(self) -> None:
         self.db = []
@@ -10,5 +7,18 @@ class BookController():
 
     def list_books(self):
         for book in self.db:
-            print(book.show_info())
-            print('-' * 50)
+            book.show_info()
+
+    def search_book(self, title):
+        for book in self.db:
+            if book.title == title:
+                return book.show_info()
+
+    def delete_book(self, code):
+        code_find = False
+        for book in self.db:
+            if book.code == code:
+                code_find = True
+                self.db.remove(book)
+                return code_find
+        return code_find
