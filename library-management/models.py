@@ -7,7 +7,7 @@ class Book():
         self.code = code
     
     def show_info(self):
-        print(f'Title: {self.title} | Author: {self.author} | Publication Year: {self.year} | Genre: {self.genre} | ISBN code: {self.code}')
+        return f'Title: {self.title} | Author: {self.author} | Publication Year: {self.year} | Genre: {self.genre} | ISBN code: {self.code}'
             
 
 class User():
@@ -18,4 +18,4 @@ class User():
         self.user_code = user_code
 
     def show_info(self):
-        print(f'Name: {self.name} | E-mail: {self.email} | Phone: {self.phone} | User code: {self.user_code}')
+        return f'Name: {self.name} | E-mail: {self.email} | Phone: {self.phone} | User code: {self.user_code}'
