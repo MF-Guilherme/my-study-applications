@@ -37,24 +37,23 @@ def editar_salario():
 
 func_controller = FuncionarioController()
 
+opcoes = {
+    '1': exibir_funcionarios,
+    '2': cadastrar_funcionario,
+    '3': excluir_funcionario,
+    '4': editar_funcionario,
+    '5': exibir_salario
+}
+
 while True:
-
     views.mostrar_menu()
-
     menu = input()
     print('-' * 50)
-    
+
     if menu == '0':
         print('Programa encerrado.')
         break
-    elif menu == '1':
-        exibir_funcionarios()
-    elif menu == '2':
-        cadastrar_funcionario()
-    elif menu == '3':
-        excluir_funcionario()
-    elif menu == '4':
-        editar_funcionario()
-    elif menu == '5':
-        exibir_salario()
-    
+    elif menu in opcoes:
+        opcoes[menu]()
+    else:
+        print('Opção inválida')
