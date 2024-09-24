@@ -41,8 +41,8 @@ class FuncionarioController():
             if funcionario.id_func == id_func:
                 id_encontrado = True
                 print(f'Código: {funcionario.id_func} | Nome: {funcionario.nome} | Cargo: {funcionario.cargo} | '
-                    f'Salário Base: R${funcionario.salario_base:.2f} | '
-                    f'Salário Líquido: R${funcionario.salario_liquido():.2f}')
+                    f'Salário Base: R${float(funcionario.salario_base):.2f} | '
+                    f'Salário Líquido: R${float(funcionario.salario_liquido()):.2f}')
                 print('-' * 50)                
         if not id_encontrado:
             print('Código funcional não encontrado')
