@@ -12,7 +12,7 @@ class BookController():
     def search_book(self, title):
         for book in self.db:
             if book.title == title:
-                return book.show_info()
+                return book
 
     def delete_book(self, code):
         code_find = False
