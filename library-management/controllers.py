@@ -6,20 +6,67 @@ class BookController():
         self.db.append(book)
 
     def list_books(self):
-        if self.db:
-            return self.db
-        else:
-            return None
+        return self.db
         
-    def search_book(self, title):
+    def search_by_book_code(self, code):
         for book in self.db:
-            if book.title == title:
+            if book.code == code:
                 return book
         return None
 
+    def update_book(self, code, title=None, author=None, year=None, genre=None):
+        book = self.search_by_book_code(code)
+        if book:
+            if title:
+                book.title = title
+            if author:
+                book.author = author
+            if year:
+                book.year = year
+            if genre:
+                book.genre = genre
+            return True
+        return False
+    
     def delete_book(self, code):
-        for book in self.db:
-            if book.code == code:
-                self.db.remove(book)
-                return True
+        book = self.search_by_book_code(code)
+        if book:
+            self.db.remove(book)
+            return True
+        return False
+
+
+class UserController():
+    def __init__(self) -> None:
+        self.db = []
+    
+    def register_user(self, user):
+        self.db.append(user)
+    
+    def list_users(self):
+        return self.db
+
+    def find_by_user_code(self, user_code):
+        for user in self.db:
+            if user.user_code == user_code:
+                return user
+        return None
+    
+    def delete_user(self, user_code):
+        user = self.find_by_user_code(user_code)
+        if user:
+            self.db.remove(user)
+            return True
+        return False
+    
+    def update_user(self, user_code, name=None, email=None, phone=None):
+        user = self.find_by_user_code(user_code)
+        if user:
+            if name:
+                user.name = name
+            if email:
+                user.email = email
+            if phone:
+                user.phone = phone
+            return True
         return False
