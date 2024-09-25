@@ -1,8 +1,11 @@
+from models import Book, User
+
 class BookController():
     def __init__(self) -> None:
         self.db = []
 
-    def add_book(self, book):
+    def add_book(self, title, author, year, genre, code):
+        book = Book(title, author, year, genre, code)
         self.db.append(book)
 
     def list_books(self):
