@@ -42,11 +42,33 @@ def show_books(controller):
     books = controller.list_books()
     if books:
         for book in books:
-            print(f'Title: {book.title} | Author: {book.author}')
+            print(f'Title: {book.title} | Author: {book.author} | ISBN: {book.code}')
     else: 
         print('There are no books registered yet')
+
+def search_book(controller):
+    ipt_code = input('Enter the book ISBN code: ')
+    book = controller.search_by_book_code(ipt_code)
+    if book:
+        print(f'Title: {book.title} | Author: {book.author} | ISBN: {book.code}')
+    else:
+        print('Book not found')
+    
+def delete_book(controller):
+    ipt_code = input('Enter the ISBN code of the book you want to delete: ')
+    if not controller.delete_book(ipt_code):
+        print("ISBN code doesn't exists.")
+    else: print("Book deleted.")
+
 
 
 if __name__ == "__main__":
     book_register(book_controller)
+    print('-' * 50)
+    book_register(book_controller)
+    print('-' * 50)
+    show_books(book_controller)
+    print('-' * 50)
+    delete_book(book_controller)
+    print('-' * 50)
     show_books(book_controller)
