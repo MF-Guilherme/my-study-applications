@@ -43,7 +43,8 @@ class UserController():
     def __init__(self) -> None:
         self.db = []
     
-    def register_user(self, user):
+    def register_user(self, name, email, phone, user_code):
+        user = User(name, email, phone, user_code)
         self.db.append(user)
     
     def list_users(self):
