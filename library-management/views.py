@@ -1,4 +1,5 @@
 from controllers import BookController, UserController
+from prompt_toolkit import prompt
 
 book_controller = BookController()
 
@@ -60,15 +61,24 @@ def delete_book(controller):
         print("ISBN code doesn't exists.")
     else: print("Book deleted.")
 
+def update_book(controller):
+    ipt_code = input('Enter the book ISBN code you want to update: ')
+    book = controller.search_by_book_code(ipt_code)
+    if book:
+        new_title = prompt("Book Title: ", default=book.title)
+        new_author = prompt("Author: ", default=book.author)
+        new_year = prompt("Publication Year: ", default=book.year)
+        new_genre = prompt("Literary genre: ", default=book.genre)
+        controller.update_book(ipt_code, new_title, new_author, new_year, new_genre)
+        print('Book updated')
+    else:
+        print("Book not find")
 
 
 if __name__ == "__main__":
     book_register(book_controller)
     print('-' * 50)
-    book_register(book_controller)
-    print('-' * 50)
     show_books(book_controller)
     print('-' * 50)
-    delete_book(book_controller)
-    print('-' * 50)
+    update_book(book_controller)
     show_books(book_controller)
