@@ -7,28 +7,36 @@ user_controller = UserController()
 # BOOK VIEWS
 
 def show_menu():
-    ipt = input(f'- Type "book" to manage books.\n'
-                f'- Type "user" to manage users.\n'
+    choice = None
+    ipt = input(f'- Type 1 to manage books.\n'
+                f'- Type 2 to manage users.\n'
                 f'- Type 0 "zero" to exit system.\n'
                 f'{'-' * 50}\n')
-    if ipt.lower() in ['book', 'books']:
-        print(f'- To add a new book enter 1.\n'
-              f'- To list all books enter 2.\n'
-              f'- To search for a book enter 3.\n'
-              f'- To update a book enter 4.\n'
-              f'- To delete a book enter 5.')
+    print('-' * 50)
+    if ipt == '0':
+        print('Exiting the system.')
+    elif ipt == '1':
+        print(f'- To add a new book type 1.\n'
+              f'- To list all books type 2.\n'
+              f'- To search for a book type 3.\n'
+              f'- To update a book type 4.\n'
+              f'- To delete a book type 5.')
         print('-' * 50)
-    elif ipt.lower() in ['user', 'users']:
-        print(f'- To add a new user enter 1.\n'
-              f'- To list all users enter 2.\n'
-              f'- To search for a user enter 3.\n'
-              f'- To update a user enter 4.\n'
-              f'- To delete a user enter 5')
+        choice = input()
         print('-' * 50)
+    elif ipt == '2':
+        print(f'- To add a new user type 1.\n'
+              f'- To list all users type 2.\n'
+              f'- To search for a user type 3.\n'
+              f'- To update a user type 4.\n'
+              f'- To delete a user type 5')
+        print('-' * 50)
+        choice = input()
     else:
-        print('Invalid input! Please, enter "book" or "user".')
+        print(f'Invalid input!\n'
+              f'Please, type "1" to manage books or "2" to manage users')
         print('-' * 50)
-    return ipt
+    return ipt, choice
 
 def get_book_infos():
     title = input("Book title: ")
@@ -36,6 +44,7 @@ def get_book_infos():
     year = input("Publication year: ")
     genre = input("Literary genre: ")
     code = input("ISBN code: ")
+    print('-' * 50)
     return title, author, year, genre, code
 
 def book_register(controller):
@@ -53,6 +62,7 @@ def show_books(controller):
 
 def search_book(controller):
     ipt_code = input('Enter the book ISBN code: ')
+    print('-' * 50)
     book = controller.search_by_book_code(ipt_code)
     if book:
         print(f'Title: {book.title} | Author: {book.author} | ISBN: {book.code}')
@@ -61,18 +71,22 @@ def search_book(controller):
     
 def delete_book(controller):
     ipt_code = input('Enter the ISBN code of the book you want to delete: ')
+    print('-' * 50)
     if not controller.delete_book(ipt_code):
         print("ISBN code doesn't exists.")
-    else: print("Book deleted.")
+    else:
+        print("Book deleted.")
 
 def update_book(controller):
     ipt_code = input('Enter the book ISBN code you want to update: ')
+    print('-' * 50)
     book = controller.search_by_book_code(ipt_code)
     if book:
         new_title = prompt("Book Title: ", default=book.title).strip() or book.title
         new_author = prompt("Author: ", default=book.author).strip() or book.author
         new_year = prompt("Publication Year: ", default=book.year).strip() or book.year
         new_genre = prompt("Literary genre: ", default=book.genre).strip() or book.genre
+        print('-' * 50)
         controller.update_book(ipt_code, new_title, new_author, new_year, new_genre)
         print('Book updated')
     else:
@@ -85,6 +99,7 @@ def get_user_infos():
     email = input("E-mail: ")
     phone = input("Phone number: ")
     user_code = input("User code: ")
+    print('-' * 50)
     return name, email, phone, user_code
 
 def user_register(controller):
@@ -102,6 +117,7 @@ def show_users(controller):
 
 def search_user(controller):
     ipt_code = input('Enter the user code: ')
+    print('-' * 50)
     user = controller.find_by_user_code(ipt_code)
     if user:
         print(f' User code: {user.user_code} | Name: {user.name} | Email: {user.email} | Phone number: {user.phone}')
@@ -110,17 +126,21 @@ def search_user(controller):
     
 def delete_user(controller):
     ipt_code = input('Enter the user code you want to delete: ')
+    print('-' * 50)
     if not controller.delete_user(ipt_code):
         print("User not found.")
-    else: print("User deleted.")
+    else: 
+        print("User deleted.")
 
 def update_user(controller):
     ipt_code = input('Enter the user code you want to update: ')
+    print('-' * 50)
     user = controller.find_by_user_code(ipt_code)
     if user:
         new_name = prompt("Name: ", default=user.name).strip() or user.name
         new_email = prompt("E-mail: ", default=user.email).strip() or user.email
         new_phone = prompt("Phone number: ", default=user.phone).strip() or user.phone
+        print('-' * 50)
         controller.update_user(ipt_code, new_name, new_email, new_phone)
         print('User updated')
     else:
