@@ -7,14 +7,14 @@ def show_menu():
     ipt = input(f'- Type "book" to manage books.\n'
                 f'- Type "user" to manage users.\n'
                 f'{'-' * 50}\n')
-    if ipt == 'book' or ipt == 'books' or ipt == 'Book' or ipt == 'Books':
+    if ipt.lower() in ['book', 'books']:
         print(f'- To add a new book enter 1.\n'
               f'- To list all books enter 2.\n'
               f'- To search for a book enter 3.\n'
               f'- To update a book enter 4.\n'
               f'- To delete a book enter 5.')
         print('-' * 50)
-    elif ipt == 'user' or ipt == 'users' or ipt == 'User' or ipt == 'Users':
+    elif ipt.lower() in ['user', 'users']:
         print(f'- To add a new user enter 1.\n'
               f'- To list all users enter 2.\n'
               f'- To search for a user enter 3.\n'
@@ -65,10 +65,10 @@ def update_book(controller):
     ipt_code = input('Enter the book ISBN code you want to update: ')
     book = controller.search_by_book_code(ipt_code)
     if book:
-        new_title = prompt("Book Title: ", default=book.title)
-        new_author = prompt("Author: ", default=book.author)
-        new_year = prompt("Publication Year: ", default=book.year)
-        new_genre = prompt("Literary genre: ", default=book.genre)
+        new_title = prompt("Book Title: ", default=book.title).strip() or book.title
+        new_author = prompt("Author: ", default=book.author).strip() or book.author
+        new_year = prompt("Publication Year: ", default=book.year).strip() or book.year
+        new_genre = prompt("Literary genre: ", default=book.genre).strip() or book.genre
         controller.update_book(ipt_code, new_title, new_author, new_year, new_genre)
         print('Book updated')
     else:
@@ -76,6 +76,7 @@ def update_book(controller):
 
 
 if __name__ == "__main__":
+    show_menu()
     book_register(book_controller)
     print('-' * 50)
     show_books(book_controller)
